@@ -43,7 +43,7 @@ public class EventController {
     }
 
     @PostMapping("delete")
-    public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {
+    public String processDeleteEventsForm(@RequestParam(required = false) Integer[] eventIds) {
         if (eventIds != null) {
             for (int id : eventIds) {
                 EventData.remove(id);
@@ -53,5 +53,40 @@ public class EventController {
 
         return "redirect:";
     }
+
+
+    //below is not working. I really think this should pass to a form that looks more like the delete.html form.
+    //from there, the user selects which event they want to edit.
+    //from there the selected event id passes to the below method and then that allows user to get Name and get description
+
+    @GetMapping("edit")
+    public String displayEditEventForm(Model model) {
+        model.addAttribute("title", "Select Event to Edit");
+        model.addAttribute("events", EventData.getAll());
+        return "events/edit";
+    }
+
+//    @GetMapping("edit/{eventId}")
+//    public String displayEditForm(Model model, @PathVariable Integer eventId) {
+//        Event eventToEdit = EventData.getById(eventId);
+//        model.addAttribute("event", eventToEdit);
+//        String title = "Edit Event " + eventToEdit.getName() + " (id=" + eventToEdit.getId() + ")";
+//        model.addAttribute("title", title );
+//        return "events/edit";
+//    }
+
+    @PostMapping("edit")
+    public String processEditForm(Integer eventId, String name, String description) {
+        Event eventToEdit = EventData.getById(eventId);
+        eventToEdit.setName(name);
+        eventToEdit.setDescription(description);
+        return "redirect:";
+    }
+
+
+//
+//    Update the name and description of the event with the appropriate model setter methods.
+//
+//    Redirect the user to /events (the event listing page).
 
 }

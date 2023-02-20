@@ -14,7 +14,7 @@ public class EventData {
     }
 
     //get a single event
-    public static Event getById(int id) {
+    public static Event getById(Integer id) {
         return events.get(id);
     }
 
@@ -24,7 +24,7 @@ public class EventData {
     }
 
     //remove an event
-    public static void remove(int id) {
+    public static void remove(Integer id) {
         events.remove(id);
     }
 
