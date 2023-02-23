@@ -28,6 +28,7 @@ public class Event {
     private boolean RSVPRequired = true;
 
 
+    private EventType type;
 
 
     public Event() {
@@ -36,14 +37,14 @@ public class Event {
     }
     @Email(message = "Invalid email. Try again.")
     public Event(String name, String description, String contactEmail, String location, boolean RSVPRequired, int numberOfAttendees) {
+        this();
         this.name = name;
         this.description = description;
         this.location = location;
         this.RSVPRequired = RSVPRequired;
         this.numberOfAttendees = numberOfAttendees;
-        this.id = nextId;
         this.contactEmail = contactEmail;
-        nextId++;
+        this.type = type;
     }
     public String getName() {
         return name;
@@ -111,5 +112,13 @@ public class Event {
 
     public void setRSVPRequired(boolean RSVPRequired) {
         this.RSVPRequired = RSVPRequired;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 }
