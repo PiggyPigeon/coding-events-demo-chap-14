@@ -12,6 +12,9 @@
         <th>Name</th>
         <th>Description</th>
         <th>Contact Email</th>
+        <th>Location</th>
+        <th>RSVP Needed</th>
+        <th>Attendees</th>
     </tr>
     </thead>
     <tr th:each="event : ${events}">
@@ -19,6 +22,10 @@
         <td th:text="${event.name}"></td>
         <td th:text="${event.description}"></td>
         <td th:text="${event.contactEmail}"></td>
+        <td th:text="${event.location}"></td>
+        <td th:text="${event.RSVPRequired}"></td>
+        <td th:text="${event.numberOfAttendees}"></td>
+
     </tr>
 </table>
 

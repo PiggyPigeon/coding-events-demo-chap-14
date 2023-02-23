@@ -1,8 +1,6 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 public class Event {
@@ -21,15 +19,28 @@ public class Event {
     @Email
     private String contactEmail;
 
+    @NotBlank(message="Where is it tho?")
+    @NotNull(message="Where is it tho?")
+    private String location;
+
+    @Min(value=1, message="Well then its not really an event, is it?")
+    private int numberOfAttendees;
+    private boolean RSVPRequired = true;
+
+
+
 
     public Event() {
         this.id = nextId;
         nextId++;
     }
     @Email(message = "Invalid email. Try again.")
-    public Event(String name, String description, String contactEmail) {
+    public Event(String name, String description, String contactEmail, String location, boolean RSVPRequired, int numberOfAttendees) {
         this.name = name;
         this.description = description;
+        this.location = location;
+        this.RSVPRequired = RSVPRequired;
+        this.numberOfAttendees = numberOfAttendees;
         this.id = nextId;
         this.contactEmail = contactEmail;
         nextId++;
@@ -78,5 +89,27 @@ public class Event {
         return Objects.hash(id);
     }
 
+    public String getLocation() {
+        return location;
+    }
 
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getNumberOfAttendees() {
+        return numberOfAttendees;
+    }
+
+    public void setNumberOfAttendees(int numberOfAttendees) {
+        this.numberOfAttendees = numberOfAttendees;
+    }
+
+    public boolean isRSVPRequired() {
+        return RSVPRequired;
+    }
+
+    public void setRSVPRequired(boolean RSVPRequired) {
+        this.RSVPRequired = RSVPRequired;
+    }
 }
