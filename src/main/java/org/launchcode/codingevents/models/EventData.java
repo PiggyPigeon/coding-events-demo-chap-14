@@ -1,34 +1,22 @@
 package org.launchcode.codingevents.models;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+/**
+ * Created by Chris Bay
+ */
+public enum EventType {
 
-public class EventData {
-    //need a place to put events
-    private static final Map<Integer, Event> events = new HashMap<>();
+    CONFERENCE("Conference"),
+    MEETUP("Meetup"),
+    WORKSHOP("Workshop"),
+    SOCIAL("Social");
 
-    //get all events
-    public static Collection<Event> getAll() {
-        return events.values();
+    private final String displayName;
+
+    EventType(String displayName) {
+        this.displayName = displayName;
     }
 
-    //get a single event
-    public static Event getById(int id) {
-        return events.get(id);
+    public String getDisplayName() {
+        return displayName;
     }
-
-    // add an event
-    public static void add(Event event) {
-        events.put(event.getId(), event);
-    }
-
-    //remove an event
-    public static void remove(int id) {
-        events.remove(id);
-    }
-
-
-
-
 }
